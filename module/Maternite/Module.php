@@ -90,6 +90,22 @@ use Maternite\Model\AntecedentType1;
 use Maternite\Model\AntecedentType1Table;
 use Maternite\Model\AntecedentType2;
 use Maternite\Model\AntecedentType2Table;
+use Maternite\Model\DateCponTable;
+use Maternite\Model\DateCpon;
+use Maternite\Model\RangCpon;
+use Maternite\Model\RangCponTable;
+use Maternite\Model\Prevention;
+use Maternite\Model\PreventionTable;
+use Maternite\Model\AllaitementTable;
+use Maternite\Model\Allaitement;
+use Maternite\Model\ContraceptionTable;
+use Maternite\Model\Contraception;
+use Maternite\Model\HereditaireTable;
+use Maternite\Model\Hereditaire;
+
+
+
+
 
 class Module implements AutoloaderProviderInterface {
 	public function getAutoloaderConfig() {
@@ -125,18 +141,6 @@ class Module implements AutoloaderProviderInterface {
 							return $table;
 						},
 
-						'EvacuationTableGateway' => function ($sm) {
-							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
-							$resultSetPrototype = new ResultSet ();
-							$resultSetPrototype->setArrayObjectPrototype ( new Evacuation () );
-							return new TableGateway ( 'evacuation', $dbAdapter, null, $resultSetPrototype );
-						},
-						
-						'Maternite\Model\EvacuationTable' => function ($sm) {
-							$tableGateway = $sm->get ( 'EvacuationTableGateway' );
-							$table = new EvacuationTable ( $tableGateway );
-							return $table;
-						},
 
 						
 						
@@ -191,11 +195,14 @@ class Module implements AutoloaderProviderInterface {
 						},
 						
 						
-						
-						
-						
-						
-						
+
+
+						'Maternite\Model\AntecedentType1Table' => function ($sm) {
+							$tableGateway = $sm->get( 'AntecedentType1TableGateway' );
+							$table = new AntecedentType1Table($tableGateway);
+							return $table;
+						},
+							
 						'AntecedentType1TableGateway' => function ($sm) {
 							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
 							$resultSetPrototype = new ResultSet ();
@@ -204,11 +211,7 @@ class Module implements AutoloaderProviderInterface {
 						},
 						
 						
-						'Maternite\Model\AntecedentType1Table' => function ($sm) {
-							$tableGateway = $sm->get( 'AntecedentType1TableGateway' );
-							$table = new AntecedentType1Table($tableGateway);
-							return $table;
-						},
+					
 						
 						
 						'AntecedentType2TableGateway' => function ($sm) {
@@ -271,7 +274,82 @@ class Module implements AutoloaderProviderInterface {
 						},
 						
 						
-					
+						'Maternite\Model\DateCponTable' => function ($sm) {
+							$tableGateway = $sm->get( 'DateCponTableGateway' );
+							$table = new DateCponTable($tableGateway);
+							return $table;
+						},
+							
+						'DateCponTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+							$resultSetPrototype = new ResultSet ();
+							$resultSetPrototype->setArrayObjectPrototype ( new DateCpon());
+							return new TableGateway ( 'date_cpon', $dbAdapter, null, $resultSetPrototype );
+						},
+						
+						
+						'Maternite\Model\HereditaireTable' => function ($sm) {
+							$tableGateway = $sm->get( 'HereditaireTableGateway' );
+							$table = new HereditaireTable($tableGateway);
+							return $table;
+						},
+							
+						'HereditaireTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+							$resultSetPrototype = new ResultSet ();
+							$resultSetPrototype->setArrayObjectPrototype ( new Hereditaire());
+							return new TableGateway ( 'hereditaire', $dbAdapter, null, $resultSetPrototype );
+						},
+
+						'Maternite\Model\RangCponTable' => function ($sm) {
+							$tableGateway = $sm->get ('RangCponTableGateway');
+							$table = new RangCponTable($tableGateway);
+							return $table;
+						},
+							
+						'RangCponTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+							$resultSetPrototype = new ResultSet ();
+							$resultSetPrototype->setArrayObjectPrototype ( new RangCpon());
+							return new TableGateway ( 'rangcpon', $dbAdapter, null, $resultSetPrototype );
+						},
+						'Maternite\Model\PreventionTable' => function ($sm) {
+							$tableGateway = $sm->get( 'PreventionTableGateway' );
+							$table = new PreventionTable($tableGateway);
+							return $table;
+						},
+						'PreventionTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+							$resultSetPrototype = new ResultSet ();
+							$resultSetPrototype->setArrayObjectPrototype ( new Prevention());
+							return new TableGateway ( 'prevention', $dbAdapter, null, $resultSetPrototype );
+						},
+						
+						'Maternite\Model\ContraceptionTable' => function ($sm) {
+							$tableGateway = $sm->get( 'ContraceptionTableGateway' );
+							$table = new ContraceptionTable($tableGateway);
+							return $table;
+						},
+						'ContraceptionTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+							$resultSetPrototype = new ResultSet ();
+							$resultSetPrototype->setArrayObjectPrototype ( new Contraception());
+							return new TableGateway ( 'contraception', $dbAdapter, null, $resultSetPrototype );
+						},
+						
+						'Maternite\Model\AllaitementTable' => function ($sm) {
+							$tableGateway = $sm->get( 'AllaitementTableGateway' );
+							$table = new AllaitementTable($tableGateway);
+							return $table;
+						},
+						'AllaitementTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+							$resultSetPrototype = new ResultSet ();
+							$resultSetPrototype->setArrayObjectPrototype ( new Allaitement());
+							return new TableGateway ( 'allaitement', $dbAdapter, null, $resultSetPrototype );
+						},
+						
+						
 						'Maternite\Model\PostnataleTable' => function ($sm) {
 							$tableGateway = $sm->get( 'PostnataleTableGateway' );
 							$table = new PostnataleTable($tableGateway);
@@ -361,6 +439,7 @@ class Module implements AutoloaderProviderInterface {
 							$resultSetPrototype->setArrayObjectPrototype ( new MotifAdmission () );
 							return new TableGateway ( 'motif_admission', $dbAdapter, null, $resultSetPrototype );
 						},
+						
 						'Maternite\Model\RvPatientConsTable' => function ($sm) {
 							$tableGateway = $sm->get ( 'RvPatientConsTableGateway' );
 							$table = new RvPatientConsTable ( $tableGateway );

@@ -46,7 +46,7 @@ protected $controlDate;
     protected $patientTable;
     protected $evacuationTable;
     protected $referenceTable;
-     protected $formPatient;
+     protected $formPatient;                     
      protected $formAdmission;
     protected $batimentTable;
     protected $accouchementTable;
@@ -58,6 +58,9 @@ protected $controlDate;
    protected $type_accouchementTable;
    protected $type_admissionTable;
     protected $grossesse;
+    protected $grossesseTable;
+    protected $preventionTable;
+    
     protected $antecedent_grossesse;
     protected $naissanceTable;
     protected $dateHelper;
@@ -65,6 +68,9 @@ protected $controlDate;
     protected $consultationMaterniteTable;
     protected $motifAdmissionTable;
     protected $rvPatientConsTable;
+    protected $dateCponTable;
+    protected $rangCponTable;
+    protected $hereditaireTable;
     protected $serviceTable;
     protected $hopitalTable;
     protected $transfererPatientServiceTable;
@@ -86,13 +92,16 @@ protected $controlDate;
     protected $hospitalisationlitTable;
     protected $litTable;
     protected $salleTable;
-
+    protected $allaitementTable;
+    
     protected $tarifConsultationTable;
     protected $resultatVpaTable;
     protected $demandeActeTable;
     protected $admissionTable;
     protected $antecedenttype1Table;
    protected $antecedenttype2Table;
+   protected $contraceptionTable;
+    
 
 	
 	
@@ -115,6 +124,7 @@ public function getForm() {
 	}
 	return $this->formPatient;
 }
+
 
 public function getAntecedantPersonnelTable()
 {
@@ -141,6 +151,32 @@ public function getOrdonnanceTable()
 	}
 	return $this->ordonnanceTable;
 }
+
+public function getPreventionTable()
+{
+	if (!$this->preventionTable) {
+		$sm = $this->getServiceLocator();
+		$this->preventionTable = $sm->get('Maternite\Model\PreventionTable');
+	}
+	return $this->preventionTable;
+}
+public function getContraceptionTable()
+{
+	if (!$this->contraceptionTable) {
+		$sm = $this->getServiceLocator();
+		$this->contraceptionTable = $sm->get('Maternite\Model\ContraceptionTable');
+	}
+	return $this->contraceptionTable;
+}
+public function getDateCponTable()
+{
+	if (!$this->dateCponTable) {
+		$sm = $this->getServiceLocator();
+		$this->dateCponTable = $sm->get('Maternite\Model\DateCponTable');
+	}
+	return $this->dateCponTable;
+}
+
 public function getDonneesExamensPhysiquesTable()
 {
 	if (!$this->donneesExamensPhysiquesTable) {
@@ -159,6 +195,15 @@ public function getRvPatientConsTable()
 	return $this->rvPatientConsTable;
 }
 
+public function getPostnataleTable()
+{
+	if (!$this->postnataleTable) {
+		$sm = $this->getServiceLocator();
+		$this->postnataleTable = $sm->get('Maternite\Model\PostnataleTable');
+	}
+	//var_dump($$this->postnataleTable);exit();
+	return $this->postnataleTable;
+}
 
 public function getNotesExamensBiologiqueTable()
 {
@@ -243,12 +288,44 @@ public function getGrossesseTable() {
 	}
 	return $this->grossesse;
 }
+public function getConsultationTable()
+{
+	if (!$this->consultationTable) {
+		$sm = $this->getServiceLocator();
+		$this->consultationTable = $sm->get('Maternite\Model\ConsultationTable');
+	}
+	return $this->consultationTable;
+}
 public function getAntecedentType1Table() {
 	if (! $this->antecedenttype1Table) {
 		$sm = $this->getServiceLocator ();
 		$this->antecedenttype1Table = $sm->get ( 'Maternite\Model\AntecedentType1Table' );
 	}
 	return $this->antecedenttype1Table;
+}
+
+
+public function getAllaitementTable() {
+	if (! $this->allaitementTable) {
+		$sm = $this->getServiceLocator ();
+		$this->allaitementTable = $sm->get ( 'Maternite\Model\AllaitementTable' );
+	}
+	return $this->allaitementTable;
+}
+public function getHereditaireTable() {
+	if (! $this->hereditaireTable) {
+		$sm = $this->getServiceLocator ();
+		$this->hereditaireTable = $sm->get ( 'Maternite\Model\HereditaireTable' );
+	}
+	return $this->hereditaireTable;
+}
+
+public function getRangCponTable() {
+	if (! $this->rangCponTable) {
+		$sm = $this->getServiceLocator ();
+		$this->rangCponTable = $sm->get ( 'Maternite\Model\RangCponTable' );
+	}
+	return $this->rangCponTable;
 }
 public function getAntecedentType2Table() {
 	if (! $this->antecedenttype2Table) {
@@ -479,6 +556,36 @@ public function admissionAction() {
 	
 	}
 	
+
+	public function infoPostnataleAction() {
+		var_dump('test');exit();
+		$this->layout ()->setTemplate ( 'layout/postnatale' );
+		$id_pat = $this->params ()->fromRoute ( 'id_patient', 0 );
+	
+		$user = $this->layout()->user;
+		$idService = $user ['IdService'];
+		$form = new ConsultationForm ();
+	
+		//var_dump($form);exit();
+		$formData = $this->getRequest ()->getPost ();
+		$form->setData ( $formData );
+	
+		$id_cons = $form->get ( "id_cons" )->getValue ();//var_dump($inf);exit();
+		$postnatale = $this->getConsultationTable()->listePostnatale($id_pat);
+		$nb= $this->getConsultationTable()->nbenf($id_pat);
+	
+		$patient = $this->getPatientTable ();
+		$unPatient = $patient->getInformationPatient( $id_pat);
+	
+		return array (
+				//'nb_enf'=>$nb,
+				'donnees_pos'=>$postnatale,
+				'lesdetails' => $unPatient,
+				'image' => $patient->getPhoto ( $id_pat ),
+				'date_enregistrement' => $unPatient['DATE_ENREGISTREMENT']
+		);
+	}
+	
 	//visualiser le patient
 	public function infoPatientAction() {
 		//var_dump('test');exit();
@@ -506,11 +613,142 @@ public function admissionAction() {
 		) ) );
 	}
 	
+	public function vuePatientAdmisAction(){
+		$this->getDateHelper();
+		$idPatient = (int)$this->params()->fromPost ('idPatient');
+		$idAdmission = (int)$this->params()->fromPost ('idAdmission');
+	
+		$unPatient = $this->getPatientTable()->getInfoPatient($idPatient);
+		$photo = $this->getPatientTable()->getPhoto($idPatient);
+	
+		$today = new \DateTime ();
+		$dateAujourdhui = $today->format( 'Y-m-d' );
+		$RendezVOUS = $this->getPatientTable ()->verifierRV($idPatient, $dateAujourdhui);
+		$date = $unPatient['DATE_NAISSANCE'];
+		//if($date){ $date = (new DateHelper())->convertDate ( $unPatient['DATE_NAISSANCE'] ); }else{ $date = null;}
+	
+		$html  = "<div style='width:100%;'>";
+			
+		$html .= "<div style='width: 18%; height: 180px; float:left;'>";
+		$html .= "<div id='photo' style='float:left; margin-left:40px; margin-top:10px; margin-right:30px;'> <img style='width:105px; height:105px;' src='../img/photos_patients/". $photo ."' ></div>";
+		$html .= "<div style='margin-left:60px; margin-top: 150px;'> <div style='text-decoration:none; font-size:14px; float:left; padding-right: 7px; '>Age:</div>  <div style='font-weight:bold; font-size:19px; font-family: time new romans; color: green; font-weight: bold;'>" . $unPatient['AGE'] . " ans</div></div>";
+		$html .= "</div>";
+			
+		$html .= "<div style='width: 70%; height: 180px; float:left;'>";
+		$html .= "<table id='vuePatientAdmission' style='margin-top:10px; float:left'>";
+	
+		$html .= "<tr style='width: 100%;'>";
+		$html .= "<td style='width: 19%; vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Nmero dossier:</a><br><div style='width: 150px; max-width: 160px; height:40px; overflow:auto; margin-bottom: 3px;'><p style='font-weight:bold; font-size:17px;'>" . $unPatient['NUMERO_DOSSIER'] . "</p></div></td>";
+		$html .= "<td style='width: 19%; vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Date de naissance:</a><br><div style='width: 150px; max-width: 160px; height:40px; overflow:auto; margin-bottom: 3px;'><p style='font-weight:bold; font-size:17px;'>" . $unPatient['DATE_NAISSANCE'] . "</p></div></td>";
+		$html .= "<td style='width: 23%; vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Nationalit&eacute;  d'origine:</a><br><div style='width: 95%; '><p style=' font-weight:bold; font-size:17px;'>" . $unPatient['NATIONALITE_ORIGINE'] . "</p></div></td>";
+		$html .= "<td style='width: 23%; vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>T&eacute;l&eacute;phone:</a><br><div style='width: 95%; '><p style=' font-weight:bold; font-size:17px;'>" . $unPatient['TELEPHONE'] . "</p></div></td>";
+		$html .= "<td style='width: 29%; '></td>";
+	
+		$html .= "</tr><tr style='width: 100%;'>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Pr&eacute;nom:</a><br><div style='width: 95%; max-width: 130px; height:40px; overflow:auto; margin-bottom: 3px;'><p style=' font-weight:bold; font-size:17px;'>" . $unPatient['PRENOM'] . "</p></div></td>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Lieu de naissance:</a><br><div style='width: 95%; max-width: 250px; height:40px; overflow:auto; margin-bottom: 3px;'><p style=' font-weight:bold; font-size:17px;'>" . $unPatient['LIEU_NAISSANCE'] . "</p></div></td>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Nationalit&eacute; actuelle:</a><br><div style='width: 95%; max-width: 135px; overflow:auto; '><p style=' font-weight:bold; font-size:17px;'>" . $unPatient['NATIONALITE_ACTUELLE']. "</p></td>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Email:</a><br><div style='width: 100%; max-width: 235px; height:40px; overflow:auto;'><p style='font-weight:bold; font-size:17px;'>" . $unPatient['EMAIL'] . "</p></div></td>";
+			
+		$html .= "</tr><tr style='width: 100%;'>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Nom  :</a><br><div style='width: 95%; max-width: 130px; height:40px; overflow:auto; margin-bottom: 3px;'><p style=' font-weight:bold; font-size:17px;'>" .$unPatient['NOM']  . "</p></div></td>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Sexe:</a><br><div style='width: 97%; max-width: 250px; height:50px; overflow:auto; margin-bottom: 3px;'><p style=' font-weight:bold; font-size:17px;'>" . $unPatient['SEXE'] . "</p></div></td>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Adresse:</a><br><div style='width: 95%; max-width: 235px; height:40px; overflow:auto; '><p style=' font-weight:bold; font-size:17px;'>" .  $unPatient['ADRESSE'] . "</p></div></td>";
+		$html .= "<td style='vertical-align: top;'><a style='text-decoration:underline; font-size:12px;'>Profession:</a><br><div style='width: 95%; max-width: 235px; height:40px; overflow:auto; '><p style=' font-weight:bold; font-size:17px;'>" .  $unPatient['PROFESSION'] . "</p></div></td>";
+		if($RendezVOUS){
+			$html .= "<span> <i style='color:green;'>
+					        <span id='image-neon' style='color:red; font-weight:bold;'>Rendez-vous! </span> <br>
+					        <span style='font-size: 16px;'>Service:</span> <span style='font-size: 16px; font-weight:bold;'> ". $RendezVOUS[ 'NOM' ]." </span> <br>
+					        <span style='font-size: 16px;'>Heure:</span>  <span style='font-size: 16px; font-weight:bold;'>". $RendezVOUS[ 'HEURE' ]." </span> </i>
+			              </span>";
+		}
+	
+		$html .= "</td>";
+		$html .= "</tr>";
+		$html .= "</table>";
+		$html .="</div>";
+			
+		$html .= "<div style='width: 12%; height: 180px; float:left; '>";
+	
+		$html .= "</div>";
+			
+		$html .= "</div>";
+	
+	
+		$html .="<div id='barre_separateur'></div>";
+	
+		$html .="<table style='margin-top:10px; margin-left:18%; width: 80%; margin-bottom: 60px;'>";
+	
+		$html .="<tr style='width: 80%; '>";
+		// $html .="<td style='width: 50%; vertical-align:top; margin-right:10px;'><span id='labelHeureLABEL' style='padding-left: 5px;'>Date d'admission </span><br><p id='zoneChampInfo1' style='background:#f8faf8; padding-left: 5px; padding-top: 5px;'> ". $this->controlDate->convertDateTime($InfoAdmis->date_enregistrement) ." </p></td>";
+	
+		//$html .="<td style='width: 50%; vertical-align:top; margin-right:10px;'><span id='labelHeureLABEL' style='padding-left: 5px;'>Service </span><br><p id='zoneChampInfo1' style='background:#f8faf8; padding-left: 5px; padding-top: 5px; font-size:15px;'> ". $InfoService->nom ." </p></td>";
+	
+		//$html .="</tr>";
+	
+	
+		$html .="</table>";
+		$html .="<table style='margin-top:10px; margin-left:18%; width: 80%;'>";
+		$html .="<tr style='width: 80%;'>";
+	
+		$html .="<td class='block' id='thoughtbot' style='width: 35%; display: inline-block;  vertical-align: bottom; padding-left:350px; padding-bottom: 15px; padding-right: 150px;'><button type='submit' id='terminer'>Terminer</button></td>";
+	
+		$html .="</tr>";
+		$html .="</table>";
+	
+	
+			
+		$html .="<script>listepatient();
+				  function FaireClignoterImage (){
+                    $('#image-neon').fadeOut(900).delay(300).fadeIn(800);
+                  }
+                  setInterval('FaireClignoterImage()',2200);
+	
+				  $('#button_pdf').click(function(){
+				     vart='/simens/public/facturation/impression-facture';
+				     var formulaire = document.createElement('form');
+			         formulaire.setAttribute('action', vart);
+			         formulaire.setAttribute('method', 'POST');
+			         formulaire.setAttribute('target', '_blank');
+	
+				     var champ = document.createElement('input');
+				     champ.setAttribute('type', 'hidden');
+				     champ.setAttribute('name', 'idAdmission');
+				     champ.setAttribute('value', ".$idAdmission.");
+				     formulaire.appendChild(champ);
+	
+				     formulaire.submit();
+	              });
+	
+				  $('a,img,hass').tooltip({
+                  animation: true,
+                  html: true,
+                  placement: 'bottom',
+                  show: {
+                    effect: 'slideDown',
+                      delay: 250
+                    }
+                  });
+	
+				 </script>";
+		//var_dump($photo);exit();
+		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
+		return $this->getResponse()->setContent(Json::encode($html));
+	
+	}
 	public function listePatientAction() {
 		$layout = $this->layout ();
 		$layout->setTemplate ( 'layout/postnatale' );
 		$view = new ViewModel ();
 		return $view;
+	}
+	public function listePatientAjaxAction() {
+		
+		$output = $this->getPatientTable()->getListePatient();
+		
+		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
+				'enableJsonExprFinder' => true
+		) ) );
 	}
 	public function getDateHelper()
 	{
@@ -521,6 +759,38 @@ public function admissionAction() {
 		return $nouv_date;
 	}
  
+	public function modifierAction() {
+		//var_dump('test');exit();
+		
+		$control = new DateHelper();
+		$this->layout ()->setTemplate ( 'layout/postnatale' );
+		$id_patient = $this->params ()->fromRoute ( 'id_patient', 0 );
+	
+		$infoPatient = $this->getPatientTable ();
+		try {
+			$info = $infoPatient->getInfoPatient( $id_patient );
+		} catch ( \Exception $ex ) {
+			return $this->redirect ()->toRoute ( 'postnatale', array (
+					'action' => 'liste-patient'
+			) );
+		}
+		$form = new PatientForm();
+		$form->get('NATIONALITE_ORIGINE')->setvalueOptions($infoPatient->listeDeTousLesPays());
+		$form->get('NATIONALITE_ACTUELLE')->setvalueOptions($infoPatient->listeDeTousLesPays());
+	
+		$date_naissance = $info['DATE_NAISSANCE'];
+		if($date_naissance){ $info['DATE_NAISSANCE'] =  $control->convertDate($info['DATE_NAISSANCE']); }else{ $info['DATE_NAISSANCE'] = null;}
+	
+		$form->populateValues ( $info );
+	
+		if (! $info['PHOTO']) {
+			$info['PHOTO'] = "identite";
+		}
+		return array (
+				'form' => $form,
+				'photo' => $info['PHOTO']
+		);
+	}
 public function enregistrementAction() {
 		
 		$user = $this->layout()->user;
@@ -587,13 +857,9 @@ public function enregistrementAction() {
 					
 				}
 			} else {
-				//var_dump($date_enregistrement);exit();
-				
-				// On enregistre sans la photo
-				//var_dump($id_employe); exit();
+			
 				$Patient->addPatient ( $donnees , $date_enregistrement , $id_employe );
-				//var_dump($date_enregistrement);exit();
-				//var_dump($donnees); exit();
+				
 			if (isset($_POST ['terminer'])){
 				return $this->redirect ()->toRoute ( 'postnatale', array (
 						'action' => 'liste-patient'
@@ -629,7 +895,7 @@ public function enregistrementAction() {
 		$id_pat = $this->params()->fromQuery('id_patient', 0);
 	
 	
-		$output = $this->getPatientTable()->getPatientAccouchee();
+		$output = $this->getPatientTable()->getPatientPostnatale();
 		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
 				'enableJsonExprFinder' => true
 		) ) );
@@ -667,7 +933,7 @@ public function complementPostnataleAction()
 		//$listesDecesMaternel = $this->conclusionTable()->getCausesDeces($id);
 		$tabNv=array();$j=1;
 		$tabEnf=array();$k=1;
-		//var_dump(count($Nouveau));exit();
+		//var_dump($this->Nouveau));exit();
 foreach ($Naissances as $enfant){
 	$tabEnf['sexe_'.$k]=$enfant['sexe'];
 	$tabEnf['n_sexe_'.$k]=$enfant['note_sexe'];
@@ -744,7 +1010,6 @@ foreach ($Nouveau as $Nv){
 		$donne_examen=$this->getDonneesExamensPhysiquesTable()->getExamensPhysiques($id);
 		 $date_rupt_pde = $this->controlDate->convertDate( $donne_examen['date_rupt_pde']);
 		 //var_dump($id);exit();
-		 //var_dump('test');exit();
 		$donne_accouchement=$this->getAccouchementTable()->getAccouchement($id);
 		
 		// var_dump($donne_accouchement);exit();
@@ -763,7 +1028,7 @@ foreach ($Nouveau as $Nv){
 					
 				'enf_viv'=>$donne_ante['enf_viv'],
 				'geste'=>$donne_ante['geste'],
-				'parite'=>$donne_ante['parite'],
+				//'parite'=>$donne_ante['parite'],
 				'note_enf'=>$donne_ante['note_enf'],
 				'note_geste'=>$donne_ante['note_geste'],
 				'note_parite'=>$donne_ante['note_parite'],
@@ -836,9 +1101,18 @@ foreach ($Nouveau as $Nv){
 						'examen_maternite_donnee11' => $donne_examen ['aspect'],
 		);//var_dump($donne_examenp);exit();
 		$form->populateValues($donne_examenp);
-		
-		
-		
+	 	$postnatale=$this->getPostnataleTable()->getPostnatale($id);
+		$donne_postnatale=array(
+				'parite'=>$postnatale['parite'],
+				'lieu_accouchement'=>$postnatale['lieu_accouchement'],
+				'type_accouchement'=>$postnatale['type_accouchement'],
+				'etat_de_la_mere'=>$postnatale['etat_de_la_mere'],
+				
+				
+					
+		);
+		$form->populateValues($donne_postnatale); 
+		//var_dump($donne_postnatale);exit();
 		
 
 		$donnees_accouchement=array(
@@ -950,7 +1224,7 @@ foreach ($Nouveau as $Nv){
 		$hopital = $this->getTransfererPatientServiceTable()->fetchHopital();
 		
 		// LISTE DES HOPITAUX
-	/* 	$form->get('hopital_accueil')->setValueOptions($hopital);
+	 	$form->get('hopital_accueil')->setValueOptions($hopital);
 		// RECUPERATION DU SERVICE OU EST TRANSFERE LE PATIENT
 		$transfertPatientService = $this->getTransfererPatientServiceTable()->getServicePatientTransfert($id);
 		
@@ -980,7 +1254,7 @@ foreach ($Nouveau as $Nv){
 			$serviceHopital = $this->getTransfererPatientServiceTable()->fetchServiceWithHopitalNotServiceActual($idHopital, $IdDuService);
 			// LISTE DES SERVICES DE L'HOPITAL
 			$form->get('service_accueil')->setValueOptions($serviceHopital);
-		}*/
+		}
 		
 		$data = array(
 			
@@ -993,6 +1267,8 @@ foreach ($Nouveau as $Nv){
 				'glycemie_capillaire' => $consult->glycemie_capillaire,
 				'temperature' => $consult->temperature,
 				'paleur' => $consult->paleur,
+				'pouls' => $consult->pouls,
+				
 				'pressionarterielle' => $consult->pression_arterielle,
 				//'hopital_accueil' => $idHopital,		
 				'id_admission' => $id_admission,
@@ -1015,7 +1291,21 @@ foreach ($Nouveau as $Nv){
 			$data ['motif_rv'] = $leRendezVous->note;
 		}
 		
+		// date cpon
+		$laDateCpon = $this->getRvPatientConsTable()->getDateCpon($id);
 		
+		if ($laDateCpon) {
+				
+			$data ['j1_j3'] = $this->controlDate->convertDate($laDateCpon->date);
+			$data ['j4_j8'] = $this->controlDate->convertDate($laDateCpon->date);
+			$data ['j9_j16'] = $this->controlDate->convertDate($laDateCpon->date);
+			$data ['j16_j41'] = $this->controlDate->convertDate($laDateCpon->date);
+			$data ['j42'] = $this->controlDate->convertDate($laDateCpon->date);
+				
+				
+					}
+					//var_dump('test');exit();
+						
 		
 		$Tranfer = $this->getTransfererPatientServiceTable()->getServicePatientTransfert($id);
 			if ($Tranfer) {
@@ -1053,18 +1343,7 @@ foreach ($Nouveau as $Nv){
 		$data ['scanner'] = $examen_morphologique ['scanner'];
 		$data ['irm'] = $examen_morphologique ['irm'];
 		
-		// //RESULTATS DES EXAMENS BIOLOGIQUE DEJA EFFECTUES ET ENVOYER PAR LE BIOLOGISTE
-		/* $examen_biologique = $this->getNotesExamensBiologiqueTable()->getNotesExamensBiologiques($id);
-		//var_dump('test');exit();
-		
-		$data ['groupe_sanguin'] = $examen_biologique ['groupe_sanguin'];
-		$data ['hemogramme_sanguin'] = $examen_biologique ['hemogramme_sanguin'];
-		$data ['bilan_hemolyse'] = $examen_biologique ['bilan_hemolyse'];
-		$data ['bilan_hepatique'] = $examen_biologique ['bilan_hepatique'];
-		$data ['bilan_renal'] = $examen_biologique ['bilan_renal'];
-		$data ['bilan_inflammatoire'] = $examen_biologique ['bilan_inflammatoire']; */
-		//var_dump($examen_biologique);exit();
-		//$form->setValue($data['heure_rv']);
+
 		
 		$form->populateValues(array_merge($data,$tabdiagons, $bandelettes, $donneesAntecedentsPersonnels, $donneesAntecedentsFamiliaux));
 		//var_dump('test');exit();
@@ -1103,26 +1382,379 @@ foreach ($Nouveau as $Nv){
 				
 
 	}
-/* 	public function complementAccouchementAction()
 	
+	public function updateComplementAccouchementAction()
 	{
 		$this->layout()->setTemplate('layout/postnatale');
-	
+		$this->getDateHelper();
+		$Control = new DateHelper();
+		$id_cons = $this->params()->fromPost('id_cons');
+		$id_patient = $this->params()->fromPost('id_patient');
+		$id_accouchement = $this->params()->fromPost('$id_accouchement');
+		
+		$form = new ConsultationForm ();
+		$formData = $this->getRequest()->getPost();
+		//var_dump($formData);exit();
+		$form->setData($formData);
+		$id_admission = $this->params()->fromPost('id_admission');
 		$user = $this->layout()->user;
 		$IdDuService = $user ['IdService'];
-		$id_medecin = $user ['id_personne'];
-		$this->getDateHelper();
-		$id_pat = $this->params()->fromQuery('id_patient', 0);
-		$id = $this->params()->fromQuery('id_cons');
-		$inf=$this->getConsultationTable()->infpat($id_pat, $id);
+		$id_medecin = $user ['id_personne'];        
 		
-		//var_dump($inf['id_admission']);exit();	
-		$id_admi = $this->params()->fromQuery('id_admission', 0);
-		$listeMedicament = $this->getConsultationTable()->listeDeTousLesMedicaments();
-			
+		// **********-- MODIFICATION DES CONSTANTES --********
+		// **********-- MODIFICATION DES CONSTANTES --********
+		// **********-- MODIFICATION DES CONSTANTES --********
+	
+		// les antecedents medicaux du patient a ajouter addAntecedentMedicauxPersonne
+		$this->getConsultationTable()->addAntecedentMedicaux($formData);
+		$this->getConsultationTable()->addAntecedentMedicauxPersonne($formData);
+		// $this->getMotifAdmissionTable()->deleteMotifAdmission($id_cons);
+	
+		//var_dump('test');exit();
+		
+		$this->getConsultationTable()->updateLesConsultation($form);
+		
+		//var_dump($form);exit();
+		// Recuperer les donnees sur les bandelettes urinaires
+		// Recuperer les donnees sur les bandelettes urinaires
+		$bandelettes = array(
+				'id_cons' => $id_cons,
+				'albumine' => $this->params()->fromPost('albumine'),
+				'sucre' => $this->params()->fromPost('sucre'),
+				'corpscetonique' => $this->params()->fromPost('corpscetonique'),
+				'croixalbumine' => $this->params()->fromPost('croixalbumine'),
+				'croixsucre' => $this->params()->fromPost('croixsucre'),
+				'croixcorpscetonique' => $this->params()->fromPost('croixcorpscetonique')
+		);
+		// mettre a jour les bandelettes urinaires
+		$this->getConsultationTable()->deleteBandelette($id_cons);
+		$this->getConsultationTable()->addBandelette($bandelettes);
+		
+		//$id_grossesse= $this->getGrossesseTable()->updateGrossesse($formData);
+	
+		//$id_accouchement=$this->getAccouchementTable()->updateAccouchement($id_cons, $id_grossesse);
+		//$this->getGrossesseTable()->updateAvortement($formData,$id_cons,$id_grossesse);
+		//$this->getConsultationMaterniteTable()->addConsultationMaternite($id_cons,$id_grossesse);
+		
+		$datadonnee = array (
+				'id_cons' => $this->params()->fromPost ('id_cons'),
+				'id_patient' => $this->params()->fromPost('id_patient'),
+				'enf_viv' => $this->params()->fromPost('enf_viv'),
+				'parite' => $this->params()->fromPost ('parite'),
+				'geste' => $this->params()->fromPost ('geste'),
+				'note_enf' => $this->params()->fromPost('note_enf'),
+				'note_parite' => $this->params()->fromPost ('note_parite'),
+				'note_geste' => $this->params()->fromPost('note_geste'),
+				'mort_ne' => $this->params()->fromPost ('mort_ne'),
+				'note_mort_ne' => $this->params()->fromPost ('note_mort_ne'),
+				'cesar' => $this->params()->fromPost ('cesar'),
+				'note_cesar' => $this->params()->fromPost ('note_cesar'),
+				'groupe_sanguin' => $this->params()->fromPost ('groupe_sanguins'),
+				'rhesus' => $this->params()->fromPost ('rhesus'),
+				'note_gs' => $this->params()->fromPost ('note_gs'),
+				'test_emmel' => $this->params()->fromPost ('test_emmel'),
+				'profil_emmel' => $this->params()->fromPost ('profil_emmel'),
+				'avortement' => $this->params()->fromPost ('avortement'),
+				'note_avortement' => $this->params()->fromPost ('note_avortement'),
+				'allaitement' => $this->params()->fromPost ('allaitement'),
+				'note_allaitement' => $this->params()->fromPost ('note_allaitement'),
+				'age' => $this->params()->fromPost ('age'),
+				'regularite' => $this->params()->fromPost ('regularite'),
+				'note_emmel' => $this->params()->fromPost ('note_emmel')
+				 
+		
+		);//var_dump($datadonnee);exit();
+		var_dump('test');exit();
+		//$this->getAntecedentType1Table ()-> updateAntecedentType1($datadonnee);
+		
+		//$id_antecedent2 = $this->getAntecedentType2Table ()-> updateAntecedentType2($formData);
+		//$this->getDonneesExamensPhysiquesTable()->updateExamenPhysique($formData);
+		//var_dump('test');exit();
+		//$id_acc= $this->getAccouchementTable()->updateAccouchement($formData,$id_grossesse);
+		//$id_pos= $this->getPostnataleTable()->updatePostnatale($formData, $id_accouchement);
+		
+		//var_dump('test');exit();
+		//$this->getAccouchementTable()->addPrenomme($formData['prenome'],$id_acc);
+	
+		// var_dump($formData['prenome']); exit();
+		//$enfant=$formData['nombre_enfant'];
+	
+		//$tab_bebes = $this->getNaissanceTable()->saveNaissance($formData,$id_cons,$id_patient,$id_accouchement);
+	
+		//$this->getDevenirNouveauNeTable()->saveNouveauNe($formData, $id_cons, $tab_bebes);
+		 
+		//var_dump('test');exit();
+	
+		//Nouveau ne
+	
+		//pour les conclusion: complication et deces maternel
+		$nombre_cause = $this->params()->fromPost('nb_comp');
+		$nombre_causeDC = $this->params()->fromPost('nbcauseDC');
+		//$this->conclusionTable()->updateConclusionComp($formData, $id_cons,$nombre_cause,$id_patient);
+		
+		//$this->conclusionTable()->updateConclusionDeces($formData, $id_cons,$nombre_causeDC,$id_patient);
+		// POUR LES ANTECEDENTS ANTECEDENTS ANTECEDENTS
+		// POUR LES ANTECEDENTS ANTECEDENTS ANTECEDENTS
+		// POUR LES ANTECEDENTS ANTECEDENTS ANTECEDENTS
+	
+		$donneesDesAntecedents = array(
+				// **=== ANTECEDENTS PERSONNELS
+				// **=== ANTECEDENTS PERSONNELS
+				// LES HABITUDES DE VIE DU PATIENTS
+				/* Alcoolique */
+				'AlcooliqueHV' => $this->params()->fromPost('AlcooliqueHV'),
+				'DateDebutAlcooliqueHV' => $this->params()->fromPost('DateDebutAlcooliqueHV'),
+				'DateFinAlcooliqueHV' => $this->params()->fromPost('DateFinAlcooliqueHV'),
+				/*Fumeur*/
+				'FumeurHV' => $this->params()->fromPost('FumeurHV'),
+				'DateDebutFumeurHV' => $this->params()->fromPost('DateDebutFumeurHV'),
+				'DateFinFumeurHV' => $this->params()->fromPost('DateFinFumeurHV'),
+				'nbPaquetFumeurHV' => $this->params()->fromPost('nbPaquetFumeurHV'),
+				'AutresHV' => $this->params()->fromPost('AutresHV'),
+				'NoteAutresHV' => $this->params()->fromPost('NoteAutresHV'),
+				/*Droguer*/
+		'DroguerHV' => $this->params()->fromPost('DroguerHV'),
+		'DateDebutDroguerHV' => $this->params()->fromPost('DateDebutDroguerHV'),
+		'DateFinDroguerHV' => $this->params()->fromPost('DateFinDroguerHV'),
+	
+		// LES ANTECEDENTS MEDICAUX
+		'DiabeteAM' => $this->params()->fromPost('DiabeteAM'),
+		'htaAM' => $this->params()->fromPost('htaAM'),
+		'drepanocytoseAM' => $this->params()->fromPost('drepanocytoseAM'),
+		'dislipidemieAM' => $this->params()->fromPost('dislipidemieAM'),
+		'asthmeAM' => $this->params()->fromPost('asthmeAM'),
+	
+		// **=== ANTECEDENTS FAMILIAUX
+		'DiabeteAF' => $this->params()->fromPost('DiabeteAF'),
+		'NoteDiabeteAF' => $this->params()->fromPost('NoteDiabeteAF'),
+		'DrepanocytoseAF' => $this->params()->fromPost('DrepanocytoseAF'),
+		'NoteDrepanocytoseAF' => $this->params()->fromPost('NoteDrepanocytoseAF'),
+		'htaAF' => $this->params()->fromPost('htaAF'),
+		'NoteHtaAF' => $this->params()->fromPost('NoteHtaAF'),
+		'NoteAutresAF' => $this->params()->fromPost('NoteAutresAF'),
+		'text_chirur' => $this->params()->fromPost('text_chirur')
+	
+		);
+		
+		//var_dump($donneesDesAntecedents);exit();
+		$id_personne = $this->getAntecedantPersonnelTable()->getIdPersonneParIdCons($id_cons);
+		$this->getAntecedantPersonnelTable()->addAntecedentsPersonnels($donneesDesAntecedents, $id_personne, $id_medecin);
+		$this->getAntecedantsFamiliauxTable()->addAntecedentsFamiliaux($donneesDesAntecedents, $id_personne, $id_medecin);
+		// POUR LES RESULTATS DES EXAMENS MORPHOLOGIQUES
+		// POUR LES RESULTATS DES EXAMENS MORPHOLOGIQUES
+		// POUR LES RESULTATS DES EXAMENS MORPHOLOGIQUES
+	
+		$info_examen_morphologique = array(
+				'id_cons' => $id_cons,
+				'8' => $this->params()->fromPost('radio_'),
+				'9' => $this->params()->fromPost('ecographie_'),
+				'12' => $this->params()->fromPost('irm_'),
+				'11' => $this->params()->fromPost('scanner_'),
+				'10' => $this->params()->fromPost('fibroscopie_')
+		);
+	
+		$this->getNotesExamensMorphologiquesTable()->updateNotesExamensMorphologiques($info_examen_morphologique);
+	
+	
+	
+	
+		$info_examen_biologique = array(
+				'id_cons' => $id_cons,
+				'1' => $this->params()->fromPost('groupe_sanguin'),
+				'2' => $this->params()->fromPost('hemogramme_sanguin'),
+				'3' => $this->params()->fromPost('bilan_hemolyse'),
+				'4' => $this->params()->fromPost('bilan_hepatique'),
+				'5' => $this->params()->fromPost('bilan_renal'),
+				'6' => $this->params()->fromPost('bilan_inflammatoire')
+		);
+		// var_dump($info_examen_biologique);exit();
+		//$this->getNotesExamensBiologiqueTable()->updateNotesExamensBiologiques($info_examen_biologique);
+	
+		// POUR LES DIAGNOSTICS
+		// POUR LES DIAGNOSTICS
+		// POUR LES DIAGNOSTICS
+		$info_diagnostics = array(
+				'id_cons' => $id_cons,
+				'diagnostic1' => $this->params()->fromPost('diagnostic1'),
+				'diagnostic2' => $this->params()->fromPost('diagnostic2'),
+				'diagnostic3' => $this->params()->fromPost('diagnostic3'),
+				'diagnostic4' => $this->params()->fromPost('diagnostic4'),
+		);
+	
+	
+		$id_diagn= $this->getDiagnosticsTable()->updateDiagnostics($info_diagnostics);
+	
+		$decision=$this->params()->fromPost('decisions');
+		$this->getDiagnosticsTable()->addDecision($decision,$id_cons);
+	
+		// POUR LES TRAITEMENTS
+		// POUR LES TRAITEMENTS
+		// POUR LES TRAITEMENTS
+		/**
+		 * ** MEDICAUX ***
+		*/
+		/**
+		 * ** MEDICAUX ***
+		*/
+		$dureeTraitement = $this->params()->fromPost('duree_traitement_ord');
+		$donnees = array(
+				'id_cons' => $id_cons,
+				'duree_traitement' => $dureeTraitement
+		);
+		//$Consommable = $this->getOrdonConsommableTable();
+		
+        
 				
+	
+		
+		
+		
+		// POUR LES RENDEZ VOUS
+        // POUR LES RENDEZ VOUS
+        // POUR LES RENDEZ VOUS
+        
+        $id_patient = $this->params()->fromPost('id_patient');
+        $date_RV_Recu = $this->params()->fromPost('date_rv');
+        if ($date_RV_Recu) {
+            $date_RV = $this->controlDate->convertDateInAnglais($date_RV_Recu);
+        } else {
+            $date_RV = $date_RV_Recu;
+        }
+        $infos_rv = array(
+            'ID_CONS' => $id_cons,
+            'NOTE' => $this->params()->fromPost('motif_rv'),
+            'HEURE' => $this->params()->fromPost('heure_rv'),
+            'DATE' => $date_RV
+        );
+        $this->getRvPatientConsTable()->updateRendezVous($infos_rv);
+		
+		// POUR LES TRANSFERT
+		// POUR LES TRANSFERT
+		// POUR LES TRANSFERT
+		$info_transfert = array(
+				'ID_SERVICE' => $this->params()->fromPost('id_service'),
+				'ID_MEDECIN' => $this->params()->fromPost('med_id_personne'),
+				'MOTIF_TRANSFERT' => $this->params()->fromPost('motif_transfert'),
+				'ID_CONS' => $id_cons
+		);
+	
+		$this->getTransfererPatientServiceTable()->updateTransfertPatientService($info_transfert);
+	
+		$info_postnatale = array(
+				'parite' => $this->params()->fromPost('parite'),
+				'numero_d_ordre' => $this->params()->fromPost('numero_d_ordre'),
+				'etat_de_la_mere' => $this->params()->fromPost('etat_de_la_mere'),
+				'type_accouchement' => $this->params()->fromPost('type_accouchement'),
+				'lieu_accouchement' => $this->params()->fromPost('lieu_accouchement'),
+				'id_accouchement' => $id_accouchement,
+				'ID_CONS' => $id_cons
+		);//var_dump($info_postnatale);exit();
+			$this->getPostnataleTable()->updatePostnatale($info_postnatale);
+		
+		// Date Cpon
+		
+		$info_datecpon = array(
+				'J1_J3' => $this->controlDate->convertDateInAnglais($this->params()->fromPost('j1_j3')),
+				'J4_J8' => $this->controlDate->convertDateInAnglais($this->params()->fromPost('j4_j8')),
+				'J9_J15' => $this->controlDate->convertDateInAnglais($this->params()->fromPost('j9_j15')),
+				'J16_J1' => $this->controlDate->convertDateInAnglais($this->params()->fromPost('j16_j41')),
+				'J42' => $this->controlDate->convertDateInAnglais($this->params()->fromPost('42')),
+								'ID_CONS' => $id_cons
+		);			
+				
+		$this->getDateCponTable()->updateDateCpon($info_datecpon);
+		
+		//rang cpon
+		
+		$info_rangcpon = array(
+				'UN' => $this->params()->fromPost('un'),
+				'DEUX' => $this->params()->fromPost('deux'),
+				'TROIS' => $this->params()->fromPost('trois'),
+				'ID_CONS' => $id_cons
+		);
+		//var_dump($info_rangcpon);exit();
+		
+		$this->getRangCponTable()->updateRangCpon($info_rangcpon);
+		
+		//prevention
+		
+		$info_prevention = array(
+				'FER' => $this->params()->fromPost('fer'),
+				'VAT' => $this->params()->fromPost('vat'),
+				'VIH' => $this->params()->fromPost('vih'),
+				'ID_CONS' => $id_cons
+		);//var_dump($info_prevention);exit();
+		//var_dump('test');exit();
+		$this->getPreventionTable()->updatePrevention($info_prevention);
+	
+		//allaitement
+		
+		$info_allaitement = array(
+				'AME' => $this->params()->fromPost('ame'),
+				'AUTRE' => $this->params()->fromPost('autre'),
+				'ID_CONS' => $id_cons
+		);//var_dump($info_prevention);exit();
+		
+        	$this->getAllaitementTable()->updateAllaitement($info_allaitement);
+        	
+		/*  Hereditaires*/
+        	$info_Hereditaire = array(
+        			'DiabeteAF' => $this->params()->fromPost('DiabeteAF'),
+        			'NoteDiabeteAF' => $this->params()->fromPost('NoteDiabeteAF'),
+        			'DrepanocytoseAF' => $this->params()->fromPost('DrepanocytoseAF'),
+        			'NoteDrepanocytoseAF' => $this->params()->fromPost('NoteDrepanocytoseAF'),
+        			'noteHtaAF' => $this->params()->fromPost('noteHtaAF'),
+        			'htaAF' => $this->params()->fromPost('htaAF'),        			 
+        			'ID_CONS' => $id_cons
+        	);//var_dump($info_Hereditaire);exit();
+        	$this->getHereditaireTable()->updateHereditaire($info_Hereditaire);
+        	
+        	
+        	//contraception
+        	
+        	$info_contraception = array(
+        			'mama' => $this->params()->fromPost('mama'),
+        			'autres' => $this->params()->fromPost('autres'),
+        			'ID_CONS' => $id_cons
+        	);//var_dump($info_prevention);exit();
+        	
+        	$this->getContraceptionTable()->updateContraception($info_contraception);
+        	
+        	
+		// POUR LES HOSPITALISATION
+		// POUR LES HOSPITALISATION
+		// POUR LES HOSPITALISATION
+		$today = new \DateTime ();
+		$dateAujourdhui = $today->format('Y-m-d H:i:s');
+		$infoDemandeHospitalisation = array(
+				'motif_demande_hospi' => $this->params()->fromPost('motif_hospitalisation'),
+				'date_demande_hospi' => $dateAujourdhui,
+				'date_fin_prevue_hospi' => $this->controlDate->convertDateInAnglais($this->params()->fromPost('date_fin_hospitalisation_prevue')),
+				'id_cons' => $id_cons
+		);
+	
+		$this->getDemandeHospitalisationTable()->saveDemandehospitalisation($infoDemandeHospitalisation);
+	
+		// POUR LA PAGE complement-accouchement
+		if ($this->params()->fromPost('terminer') == 'save') {
+	
+			// VALIDER EN METTANT '1' DANS CONSPRISE Signifiant que le medecin a consulter le patient
+			// Ajouter l'id du medecin ayant consulter le patient
+			$valide = array(
+					'VALIDER' => 1,
+					'ID_CONS' => $id_cons,
+					'ID_MEDECIN' => $this->params()->fromPost('med_id_personne')
+			);
+			$this->getConsultationTable()->validerConsultation($valide);
+				
+		}
+	
+		return $this->redirect()->toRoute('postnatale', array(
+				'action' => 'postnatale',
+		));
+	
+	}
 
-	} */
 	
 	
 	//ENREGISTREMNT MODIFICATION
@@ -1139,7 +1771,7 @@ foreach ($Nouveau as $Nv){
 			$Control = new DateHelper();
 			$Patient = $this->getPatientTable ();
 			$today = new \DateTime ( 'now' );
-			$nomfile = $today->format ( 'dmy_His' );var_dump('test'); exit();
+			$nomfile = $today->format ( 'dmy_His' );//var_dump('test'); exit();
 			$date_modification = $today->format ( 'Y-m-d H:i:s' );
 			$fileBase64 = $this->params ()->fromPost ( 'fichier_tmp' );
 			$fileBase64 = substr ( $fileBase64, 23 );
@@ -1179,13 +1811,12 @@ foreach ($Nouveau as $Nv){
 				$ancienneImage = $lePatient['PHOTO'];
 	
 				if($ancienneImage) {
-					unlink ( 'C:\wamp64\www\simens\public\img\photos_patients\\' . $ancienneImage . '.jpg' );
+					unlink ( 'C:\wamp64\www\simens-maternite\public\img\photos_patients\\' . $ancienneImage . '.jpg' );
 				}
-				imagejpeg ( $img, 'C:\wamp64\www\simens\public\img\photos_patients\\' . $nomfile . '.jpg' );
+				imagejpeg ( $img, 'C:\wamp64\www\simens-maternite\public\img\photos_patients\\' . $nomfile . '.jpg' );
 	
 				$donnees['PHOTO'] = $nomfile;
 				$Patient->updatePatient ( $donnees , $id_patient, $date_modification, $id_employe);
-				var_dump('lkfjjf');exit();
 				return $this->redirect ()->toRoute ( 'postnatale', array (
 						'action' => 'liste-patient'
 				) );
@@ -1275,14 +1906,7 @@ public function listePatientsAdmisAction() {
 		
 
 	}
-	public function getConsultationTable()
-	{
-		if (!$this->consultationTable) {
-			$sm = $this->getServiceLocator();
-			$this->consultationTable = $sm->get('Maternite\Model\ConsultationTable');
-		}
-		return $this->consultationTable;
-	}
+
 	public function postnataleAction(){
 		$this->layout()->setTemplate('layout/postnatale');
 		$user = $this->layout()->user;
@@ -1303,16 +1927,7 @@ public function listePatientsAdmisAction() {
 	}
 	
 	
-	
-	public function getPostnataleTable()
-	{
-		if (!$this->postnataletTable) {
-			$sm = $this->getServiceLocator();
-			$this->postnataleTable = $sm->get('Maternite\Model\PostnataleTable');
-		}
-		//var_dump($$this->postnataleTable);exit();
-		return $this->postnataleTable;
-	}
+
 	public function infoPatientAdmisAction() {
 		//var_dump('test');exit();
 		$this->layout ()->setTemplate ( 'layout/postnatale' );
@@ -1331,7 +1946,7 @@ public function listePatientsAdmisAction() {
 
 	public function impressionPdfAction()
 	{
-		//$user =$this->layout()->setTemplate('layout/accouchement');
+		$user =$this->layout()->setTemplate('layout/postnatale');
 		$user = $this->layout()->user;
 		$serviceMedecin = $user ['NomService'];
 		$nomMedecin = $user ['Nom'];
@@ -1740,7 +2355,8 @@ public function listePatientsAdmisAction() {
 			$DocPdf->addPage($page->getPage());
 	
 			// Afficher le document contenant la page
-			$DocPdf->getDocument();
+			$DocPdf->getDocument();		
+			
 		}
 	
 	
@@ -1751,13 +2367,7 @@ public function listePatientsAdmisAction() {
 	
 	
 	
-	public function listePatientAjaxAction() {
-	
-		$output = $this->getPatientTable()->getListePatient();
-		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
-				'enableJsonExprFinder' => true
-		) ) );
-	}
+
 	
 
 

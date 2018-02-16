@@ -264,6 +264,8 @@ return array(
     								
     								'enregistrement'=>array('gynecologue','infirmier','sage_femme'),
     								'liste-patient'=>array('gynecologue','infirmier','sage_femme'),
+    								'liste-postnatale'=>array('gynecologue','infirmier','sage_femme'),
+    								
     								'liste-patient-ajax'=>array('gynecologue','infirmier','sage_femme'),
     								'info-patient'=>array('gynecologue','infirmier','sage_femme'),
     								'infos-patient'=>array('gynecologue','infirmier','sage_femme'),
@@ -290,8 +292,10 @@ return array(
     								
     								//'maj-accouchement'=>array('gynecologue','infirmier','sage_femme'),
     								//'maj-complement-accouchement'=>array('gynecologue','infirmier','sage_femme'),
-    								//'update-complement-accouchement'=>array('gynecologue','infirmier','sage_femme'),
-    								//'impression-Pdf'=>array('gynecologue','infirmier','sage_femme'),
+    								'update-complement-postnatale'=>array('gynecologue','infirmier','sage_femme'),
+    								'update-complement-accouchement'=>array('gynecologue','infirmier','sage_femme'),
+    								
+    								'impression-Pdf'=>array('gynecologue','infirmier','sage_femme'),
     								//'en-cours'=>array('gynecologue','infirmier','sage_femme'),
     								'liste-patient-encours-ajax'=>array('gynecologue','infirmier','sage_femme'),
     								'liste-soins-prescrits'=>array('gynecologue','infirmier','sage_femme'),
@@ -314,7 +318,7 @@ return array(
     								//'info-accouchement'=>array('gynecologue','infirmier','sage_femme'),
     								//'info-statistique'=>array('gynecologue','infirmier','sage_femme'),
     								'enfant' =>array('infirmier', 'gynecologue','sage_femme'),
-    								//'imprimer-certifat-accouchement' =>array('infirmier', 'gynecologue','sage_femme'),
+    								'imprimer-certifat-accouchement' =>array('infirmier', 'gynecologue','sage_femme'),
     						),
     						
     						

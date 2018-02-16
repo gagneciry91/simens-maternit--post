@@ -1,6 +1,5 @@
-
 function ajoutEnfant(nbEnfant){
-	//alert(nbEnfant);
+	
 	
 	$('#tabEnfants').html('');
 	var element='<div id="tabsEnfants" class="tabsEnfants"> <ul>';
@@ -12,17 +11,7 @@ function ajoutEnfant(nbEnfant){
 		  contenu +=( '<div id="onglet-'+i+'">'+
 				 '<table id="styleEnf">'+  
 			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1">Sexe'+i+'</label>'+
-			                  '</div>'+   
-			                  '<div class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2"><select id="sexe_'+i+'"><option value="M" >M</option><option value"F">F</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div   class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_sexe_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
+			     
 			          '<td  class="antecedent_go">'+
 		              '<div   class="styleEnfDiv4">'+
 		                 '<label 	 class="styleLabel4">Poids(kgs)</label>'+
@@ -31,179 +20,42 @@ function ajoutEnfant(nbEnfant){
 		                 '<label class="styleLabel5"><input type="number" min=0 id="poids_'+i+'"></input></label>'+
 		              '</div>'+ 
 		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_poids_'+i+'" type="text"></input></label>'+
+		                 '<label  class="styleLabel5">Note <input id="n_poids_'+i+'" type="text"></input></label>'+
 		              '</div>'+ 
+		             
 		      '</td>'+
+		      '<td  class="antecedent_go">'+
+              '<div   class="styleEnfDiv4">'+
+                 '<label 	 class="styleLabel4">Taille(cm)</label>'+
+              '</div>'+   
+              '<div  class="styleEnfDiv5">'+
+                 '<label class="styleLabel5"><input type="number" min=0 id="taille_'+i+'"></input></label>'+
+              '</div>'+ 
+              '<div   class="styleEnfDiv6">'+
+                 '<label  class="styleLabel6">Note <input id="n_taille_'+i+'" type="text"></input></label>'+
+              '</div>'+ 
+      '</td>'+
 			       '</tr>'+
-			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1">Cri</label>'+
-			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2"><select id="cri_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_cri_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
-			          '<td  class="antecedent_go">'+
-		              '<div   class="styleEnfDiv4">'+
-		                 '<label 	 class="styleLabel4">Taille(cm)</label>'+
-		              '</div>'+   
-		              '<div  class="styleEnfDiv5">'+
-		                 '<label class="styleLabel5"><input type="number" min=0 id="taille_'+i+'"></input></label>'+
-		              '</div>'+ 
-		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_taille_'+i+'" type="text"></input></label>'+
-		              '</div>'+ 
-		      '</td>'+
-			       '</tr>'+
+			    
 			       
 			       
 			       '</tr>'+
-			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1">Sat</label>'+
-			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2"><select id="sat_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_sat_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
-			          '<td  class="antecedent_go">'+
-		              '<div   class="styleEnfDiv4">'+
-		                 '<label 	 class="styleLabel4">Vitamine K</label>'+
-		              '</div>'+   
-		              '<div  class="styleEnfDiv5">'+
-		                 '<label class="styleLabel5"><select id="vitk_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-		              '</div>'+ 
-		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_vitk_'+i+'" type="text"></input></label>'+
-		              '</div>'+ 
-		      '</td>'+
-			       '</tr>'+
-			       
-			       
-			       
-			       
-			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1" title="Malformation">Malf</label>'+
-			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2" ><select id="malf_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_malf_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
-			          '<td  class="antecedent_go">'+
-		              '<div   class="styleEnfDiv4">'+
-		                 '<label 	 class="styleLabel4" title="Maintien Temperature">Maintien T&ordm;</label>'+
-		              '</div>'+   
-		              '<div  class="styleEnfDiv5">'+
-		                 '<label class="styleLabel5"><select id="mt_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-		              '</div>'+ 
-		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_mt_'+i+'" type="text"></input></label>'+
-		              '</div>'+ 
-		      '</td>'+
-			       '</tr>'+
-			       
-			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1" title="Mise au Soin Precoce">MSP</label>'+
-			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2" ><select id="msp_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_msp_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
-			          '<td  class="antecedent_go">'+
-		              '<div   class="styleEnfDiv4">'+
-		                 '<label 	 class="styleLabel4" title="Soin du Cordon">Soin Cordon</label>'+
-		              '</div>'+   
-		              '<div  class="styleEnfDiv5">'+
-		                 '<label class="styleLabel5"><select id="sc_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-		              '</div>'+ 
-		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_sc_'+i+'" type="text"></input></label>'+
-		              '</div>'+ 
-		      '</td>'+
-			       '</tr>'+
-			      	   
-			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1" title="Reanimation">Reanim</label>'+
-			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2" ><select id="reanim_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_reanim_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
-			          '<td  class="antecedent_go">'+
-		              '<div   class="styleEnfDiv4">'+
-		                 '<label 	 class="styleLabel4" title="">Collyre</label>'+
-		              '</div>'+   
-		              '<div  class="styleEnfDiv5">'+
-		                 '<label class="styleLabel5"><select id="collyre_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-		              '</div>'+ 
-		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_collyre_'+i+'" type="text"></input></label>'+
-		              '</div>'+ 
-		      '</td>'+
-			       '</tr>'+
-			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1" title="">VPO</label>'+
-			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2" ><select id="vpo_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_vpo_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
-			          '<td  class="antecedent_go">'+
-		              '<div   class="styleEnfDiv4">'+
-		                 '<label 	 class="styleLabel4" title="Anti Tuberculeux">antiTuberculeux</label>'+
-		              '</div>'+   
-		              '<div  class="styleEnfDiv5">'+
-		                 '<label class="styleLabel5"><select id="antiT_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-		              '</div>'+ 
-		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_antiT_'+i+'" type="text"></input></label>'+
-		              '</div>'+ 
-		      '</td>'+
-			       '</tr>'+
-			       
+			
 			       '<tr >'+
 			          '<td  class="antecedent_go">'+
 			                  '<div class="styleEnfDiv1">'+
 			                     '<label  class="styleLabel1" title="">BCG</label>'+
 			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2" ><select id="bcg_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
+			                  '<div  class="styleEnfDiv4">'+
+			                     '<label   class="styleLabel4" ><select id="bcg_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
 			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Note <input id="n_bcg_'+i+'" type="text"></input></label>'+
+			                  '<div  class="styleEnfDiv6">'+
+			                     '<label  class="styleLabel5">Note <input id="n_bcg_'+i+'" type="text"></input></label>'+
 			                  '</div>'+ 
 			          '</td>'+
 			          '<td  class="antecedent_go">'+
 		              '<div   class="styleEnfDiv4">'+
-		                 '<label 	 class="styleLabel4" title="Anti H&eacute;patique">AntiH&eacute;patique</label>'+
+		                 '<label 	 class="styleLabel4" title="Infection">Infection</label>'+
 		              '</div>'+   
 		              '<div  class="styleEnfDiv5">'+
 		                 '<label class="styleLabel5"><select id="anti_hepa_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
@@ -214,112 +66,50 @@ function ajoutEnfant(nbEnfant){
 		      '</td>'+
 			       '</tr>'+
 			       
-			       '<tr >'+
-			          '<td  class="antecedent_go">'+
-			                  '<div class="styleEnfDiv1">'+
-			                     '<label  class="styleLabel1" title="Autre Vaccins">Autres</label>'+
-			                  '</div>'+   
-			                  '<div  class="styleEnfDiv2">'+
-			                     '<label   class="styleLabel2" ><select id="autre_vacc_'+i+'"><option value="Non">Non</option><option value="Oui">Oui</option></select></label>'+
-			                  '</div>'+ 
-			                  '<div  class="styleEnfDiv3">'+
-			                     '<label  class="styleLabel3">Type <input id="type_autre_vacc_'+i+'" type="text"></input></label>'+
-			                  '</div>'+ 
-			          '</td>'+
-			          '<td  class="antecedent_go">'+
-		              '<div   class="styleEnfDiv6">'+
-		                 '<label  class="styleLabel6">Note <input id="n_autre_vacc_'+i+'" type="text"></input></label>'+
-		              '</div>'+ 
-		              '</td>'+
 			       
-		         '</tr>'+ 
 		         '<tr >'+
 		          '<td  class="antecedent_go">'+
-		                  '<div class="div1">'+
-		                     '<label  class="label1" title="Perimetre">P&eacute;rim&eacute;tres:</label>'+
-		                  '</div>'+   
-		                  '<div  class="div2">'+
-		                     '<label   class="label2" title="Perimetre Cranien">Cranien</label>'+
-		                  '</div>'+ 
+		                    
 		                  '<div  class="div3">'+
-		                     '<label   class="label3" ><input type="number" min=0 id="cranien_'+i+'"></input></label>'+
-		                  '</div>'+ 
-		                  '<div  class="div4">'+
-		                     '<label   class="label4" title="Perimetre Brachial">Brachial</label>'+
+		                     '<label   class="label3" title="Perimetre Cranien">Temperature</label>'+
 		                  '</div>'+ 
 		                  '<div  class="div5">'+
-		                     '<label   class="label5" ><input type="number" min=0 id="brachial_'+i+'"></input></label>'+
+		                     '<label   class="label5" ><input type="number" min=36 id="cranien_'+i+'"></input></label>'+
 		                  '</div>'+ 
+		                  '<div   class="styleEnfDiv6">'+
+			                 '<label  class="styleLabel5">Note <input id="n_anti_hepa_'+i+'" type="text"></input></label>'+
+			              '</div>'+
 		          '</td>'+
 		          '<td  class="antecedent_go">'+
-		            '<div  class="div6">'+
-                     '<label   class="label6" title="Perimetre Cephalique">C&eacute;phalique</label>'+
+                  
+                  '<div  class="div3">'+
+                     '<label   class="label3" title="Perimetre Cranien">Etat cordon</label>'+
+                  '</div>'+ 
+                  '<div  class="styleEnfDiv5">'+
+                  '<label   class="styleLabel5" ><select id="bcg_'+i+'"><option value="Normal">Normal</option><option value="Anormal">anormal</option></select></label>'+
+               '</div>'+ 
+               '<div   class="styleEnfDiv6">'+
+               '<label  class="styleLabel6	">Note <input id="n_anti_hepa_'+i+'" type="text"></input></label>'+
+            '</div>'+
+          '</td>'+
+		        
+		    '</tr>'+
+		         '<td  class="antecedent_go">'+
+            
+                   '<div  class="div3">'+
+                     '<label   class="label3" title="Perimetre Cranien">Etat Enfant</label>'+
                    '</div>'+ 
-                   '<div  class="div7">'+
-                     '<label   class="label7" ><input type="number" min=0 id="cephalique_'+i+'"></input></label>'+
+                   '<div  class="styleEnfDiv5">'+
+                     '<label   class="styleLabel5" ><select id="bcg_'+i+'"><option value="Normal">Normal</option><option value="Anormal">anormal</option></select></label>'+
+                   '</div>'+ 
+                   '<div   class="styleEnfDiv6">'+
+                     '<label  class="styleLabel5	">Note <input id="n_anti_hepa_'+i+'" type="text"></input></label>'+
                    '</div>'+
-	                '<div   class="div8">'+
-	                 '<label  class="label8">Note <input id="n_perim_'+i+'" type="text"></input></label>'+
-	                '</div>'+ 
-	              '</td>'+
-		       
-	         '</tr>'+ 
+               '</td>'+
+	         '<tr >'+
 	         
-
-		       '<tr >'+
-		          '<td  class="antecedent_go">'+
-		                  '<div class="diva1">'+
-		                     '<label  class="labela1" title="Apgar">Apgar:</label>'+
-		                  '</div>'+   
-		                  '<div  class="diva2">'+
-		                     '<label   class="labela2" title="Agar 1">1&nbsp;&nbsp;&nbsp;'+
-		                         '<select id="apgar1_'+i+'">'+  
-		                              '<option>1/10</option>'+
-		                              '<option>2/10</option>'+
-		                              '<option>3/10</option>'+
-		                              '<option>4/10</option>'+
-		                              '<option>5/10</option>'+
-		                              '<option>6/10</option>'+
-		                              '<option>7/10</option>'+
-		                              '<option>8/10</option>'+
-		                              '<option>9/10</option>'+
-		                              '<option>10/10</option>'+
-		                          '</select>'+
-		                     '</label>'+
-		                  '</div>'+ 
-		                  '<div  class="diva3">'+
-		                     '<label   class="labela3" title="Agar 5">5&nbsp;&nbsp;&nbsp;'+
-		                         '<select id="apgar5_'+i+'">'+  
-		                              '<option>1/10</option>'+
-		                              '<option>2/10</option>'+
-		                              '<option>3/10</option>'+
-		                              '<option>4/10</option>'+
-		                              '<option>5/10</option>'+
-		                              '<option>6/10</option>'+
-		                              '<option>7/10</option>'+
-		                              '<option>8/10</option>'+
-		                              '<option>9/10</option>'+
-		                              '<option>10/10</option>'+
-		                          '</select>'+
-		                     '</label>'+
-		                  '</div>'+
-		                   
-		          '</td>'+
-		          '<td  class="antecedent_go">'+
-	                '<div   class="diva4">'+
-	                 '<label  class="labela4">Note <input id="n_apgar_'+i+'" type="text"></input></label>'+
-	                '</div>'+ 
-	              '</td>'+
-		       
-	         '</tr>'+ 
-		         '<tr >'+
-		          '<td  class="antecedent_go">'+
-	              '<div   class="">'+
-	              '<label  id="consult_j1_j2label">Consultation J1J2 <textarea class=" consult_j1_j2" id="consj1j2_'+i+'" type=""></textarea></label>'+
-	              '</div>'+ 
-	              '</td>'+
-		       
-	         '</tr>'+ 
+	         '</tr>'+
+		     
 	         
 		     
 			    ' </table>'+

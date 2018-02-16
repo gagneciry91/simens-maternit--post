@@ -1123,11 +1123,11 @@ $this->add(array(
 				'name' => 'pouls',
 				'type' => 'Text',
 				'options' => array (
-						'label' => 'Pouls (bat/min)' 
+						//'label' => 'Pouls (bat/min)' 
 				),
 				'attributes' => array (
 						'class' => 'pouls_only_numeric',
-						'readonly' => 'readonly',
+						//'readonly' => 'readonly',
 						'id' => 'pouls' 
 				) 
 		) );
@@ -1611,6 +1611,366 @@ $this->add(array(
 						'id' => 'htaAM' 
 				) 
 		) );
+		 /* tuberculose*/
+		$this->add ( array (
+				'name' => 'tuberculose',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'tuberculose'
+				)
+		) );
+		$this->add ( array (
+				'name' => 'notetube',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notetube'
+				)
+		) );
+		
+		/* epilepsie  varices*/
+		$this->add ( array (
+				'name' => 'epilepsie',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'epilepsie'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'noteepi',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'noteepi'
+				)
+		) );
+		
+		/*   varices*/
+		$this->add ( array (
+				'name' => 'varices',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'varices'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notevarice',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notevarice'
+				)
+		) );
+		
+		/*exophtalmi   */
+		$this->add ( array (
+				'name' => 'exophtalmi',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'exophtalmi'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'noteexoph',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'noteexoph'
+				)
+		) );
+		/*alergiecuv   */
+		$this->add ( array (
+				'name' => 'alergiecuv',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'alergiecuv'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_cuve',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_cuve'
+				)
+		) );
+		
+		/*vulve   */
+		$this->add ( array (
+				'name' => 'vulve',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'vulve'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notevu',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notevu'
+				)
+		) );
+		/*perine   */
+		$this->add ( array (
+				'name' => 'perine',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'perine'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'noteperine',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'noteperine'
+				)
+		) );
+		
+		/*col   */
+		$this->add ( array (
+				'name' => 'col',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'col'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_col',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_col'
+				)
+		) );
+		/*  uterus */
+		$this->add ( array (
+				'name' => 'uterus',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'uterus'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_uterus',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_uterus'
+				)
+		) );
+		/*  annexe */
+		$this->add ( array (
+				'name' => 'annexe',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'annexe'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_annexe',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_annexe'
+				)
+		) );
+		/*  pertes */
+		$this->add ( array (
+				'name' => 'pertes',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'pertes'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_pertes',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_pertes'
+				)
+		) );
+		/*  pilule */
+		$this->add ( array (
+				'name' => 'pilule',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'pilule'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notepilule',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notepilule'
+				)
+		) );
+		/*  tabac */
+		$this->add ( array (
+				'name' => 'tabac',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'tabac'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notetab',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notetab'
+				)
+		) );
+		
+		/* alcool */
+		$this->add ( array (
+				'name' => 'alcool',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'alcool'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'noteal',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'noteal'
+				)
+		) );
+		
+		/* autresgenre */
+		$this->add ( array (
+				'name' => 'autresgenre',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'autresgenre'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'noteautre',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'noteautre'
+				)
+		) );
+		
+		
+		/*  diaphragme */
+		$this->add ( array (
+				'name' => 'diaphragme',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'diaphragme'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notediaphragme',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notediaphragme'
+				)
+		) );
+		/*  condoms */
+		$this->add ( array (
+				'name' => 'condoms',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'condoms'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notecondoms',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notecondoms'
+				)
+		) );
+		/*  spermicides */
+		$this->add ( array (
+				'name' => 'spermicides',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'spermicides'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notespermicides',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notespermicides'
+				)
+		) );
+		/*  dui */
+		$this->add ( array (
+				'name' => 'dui',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'dui'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'notedui',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'notedui'
+				)
+		) );
+		/*  injectable */
+		$this->add ( array (
+				'name' => 'injectable',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'injectable'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_injectable',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_injectable'
+				)
+		) );
+		/*  norplant */
+		$this->add ( array (
+				'name' => 'norplant',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'norplant'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_norplant',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_norplant'
+				)
+		) );
+		/*  autremethode */
+		$this->add ( array (
+				'name' => 'autremethode',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'autremethode'
+				)
+		) );
+		
+		$this->add ( array (
+				'name' => 'note_autremethode',
+				'type' => 'Text',
+				'attributes' => array (
+						'id' => 'note_autremethode'
+				)
+		) );
 		/* Drepanocytose */
 		$this->add ( array (
 				'name' => 'drepanocytoseAM',
@@ -1619,6 +1979,32 @@ $this->add(array(
 						'id' => 'drepanocytoseAM' 
 				) 
 		) );
+		/* cardio */
+		$this->add ( array (
+				'name' => 'cardio',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'cardio'
+				)
+		) );
+		/* ultere */
+		$this->add ( array (
+				'name' => 'ultere',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'ultere'
+				)
+		) );
+		
+		/*migraine */
+		$this->add ( array (
+				'name' => 'migraine',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'migraine'
+				)
+		) );
+		
 		/* Dislipidemie */
 		$this->add ( array (
 				'name' => 'dislipidemieAM',
@@ -1694,6 +2080,42 @@ $this->add(array(
 				'attributes' => array (
 						'id' => 'EclampsieGO' 
 				) 
+		) );
+		/*avortement */
+		$this->add ( array (
+				'name' => 'avortement',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'avortement'
+				)
+		) );
+		$this->add ( array (
+				'name' => 'note_avortement',
+				'type' => 'text',
+				'attributes' => array (
+						'id' => 'note_avortement'
+				)
+		) );
+		$this->add ( array (
+				'name' => 'un',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'un'
+				)
+		) );
+		$this->add ( array (
+				'name' => 'deux',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'deux'
+				)
+		) );
+		$this->add ( array (
+				'name' => 'trois',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'trois'
+				)
 		) );
 		/* Note Eclampsie */
 		$this->add ( array (
@@ -1969,18 +2391,48 @@ $this->add(array(
 				) 
 		) );
 		$this->add ( array (
-				'name' => 'rhesus',
-				'type' => 'Zend\Form\Element\Select',
-				'options' => array (
-						'value_options' => array (
-								' -' => '-',
-								'+' => '+',
-						)
-				),
+				'name' => 'j1_j3',
+				'type' => 'Text',
+				
 				'attributes' => array (
-						'id' => 'rhesus'
+						'id' => 'j1_j3' 
+				) 
+		) );
+		$this->add ( array (
+				'name' => 'j4_j8',
+				'type' => 'Text',
+				
+				'attributes' => array (
+						'id' => 'j4_j8'
 				)
 		) );
+		$this->add ( array (
+				'name' => 'j9_j15',
+				'type' => 'Text',
+				
+				'attributes' => array (
+						'id' => 'j9_j15'
+				)
+		) );
+		$this->add ( array (
+				'name' => 'j16_j41',
+				'type' => 'text',
+				
+				'attributes' => array (
+						'id' => 'j16_j41'
+				)
+		) );
+		
+		
+		$this->add ( array (
+				'name' => 'j42',
+				'type' => 'text',
+				'attributes' => array (
+						//'readonly' => 'readonly',
+						'id' => '42'
+				)
+		) );
+		
 		$this->add ( array (
 				'name' => 'note_gs',
 				'type' => 'text',
@@ -2473,6 +2925,37 @@ $this->add(array(
 				),
 		));
 		
+		$this->add(array(
+				'name' => 'etat_enfant',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => 'Normal',
+								1=> 'Anormal' ,
+						),
+				),
+				'attributes' => array(
+						//'readonly' => 'readonly',
+						'id' => 'etat_enfant',
+		
+				),
+		));
+		$this->add(array(
+				'name' => 'etat_cordon',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => 'Normal',
+								1=> 'Anormal' ,
+						),
+				),
+				'attributes' => array(
+						//'readonly' => 'readonly',
+						'id' => 'etat_cordon',
+		
+				),
+		));
+		
 
 
 	$this->add ( array (
@@ -2608,7 +3091,26 @@ $this->add(array(
 			)
 	) );
 	
+	$this->add ( array (
+			'name' => 'allaitement',
+			'type' => 'Text',
 	
+			
+			'attributes' => array (
+					'id' => 'allaitement',
+					//'required' => true,
+			)
+	) );
+	$this->add ( array (
+			'name' => 'note_allaitement',
+			'type' => 'Text',
+	
+		
+			'attributes' => array (
+					'id' => 'note_allaitement',
+					//'required' => true,
+			)
+	) );
 	$this->add ( array (
 			'name' => 'note_enf',
 			'type' => 'Text',
@@ -2631,7 +3133,21 @@ $this->add(array(
 					'id' => 'parite',
 					'max' => 20,
 					'min'=>0,
-					//'required' => true,
+					//'required' => true,numero_d_ordre
+			)
+	) );
+	
+	$this->add ( array (
+			'name' => 'numero_d_ordre',
+			'type' => 'number',
+			'options' => array (
+					//'label' => iconv('ISO-8859-1', 'UTF-8','PARITE')
+			),
+			'attributes' => array (
+					'id' => 'numero_d_ordre',
+					'max' => 2000,
+					'min'=>1,
+					//'required' => true,numero_d_ordre
 			)
 	) );
 	
@@ -2680,6 +3196,22 @@ $this->add(array(
 			'attributes' => array(
 					'id' => 'cesar',
 					'max' => 20,
+					'min'=>0,
+					//'required' => true,
+			),
+	));
+	
+
+	$this->add(array(
+			'name' => 'age',
+			'type' => 'number',
+				
+			'options' => array (
+						
+			),
+			'attributes' => array(
+					'id' => 'age',
+					'max' => 6,
 					'min'=>0,
 					//'required' => true,
 			),
@@ -2806,37 +3338,25 @@ $this->add(array(
 					//'required' => true,
 			)
 	) );
-	$this->add ( array (
-			'name' => 'rang_cpon',
-			'type' => 'Text',
-			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
-			),
-			'attributes' => array (
-					'id' => 'rang_cpon',
-					//'required' => true,
-			)
-	) );
-		$this->add ( array (
-				'name' => 'date_cpon',
-				'type' => 'Select',
+$this->add ( array (
+				'name' => 'rang_cpon',
+				'type' => 'Zend\Form\Element\Select',
 				'options' => array (
-						//'label' => iconv('ISO-8859-1', 'UTF-8','Type D\'Accouchemet:'),
 						'value_options' => array (
-								''=>''
-						)
+								'1' => '1',
+								'2' => '2', 
+								'3' => '3',
+								
+						) 
 				),
 				'attributes' => array (
-						'readonly' => 'readonly',
-						'registerInArrrayValidator' => true,
-						'onchange'=>' getPostnatale(this.value)',
-						'id' => 'date_cpon',
-						//'required' => true,
-				)
-		) );	
+						'id' => 'rang_cpon' 
+				) 
+		) );
+		
 		// fin clinic
 		
-		//enfant
+	/* 	//enfant
 		
 		$this->add(array(
 				'name' => 'bcg',
@@ -2891,50 +3411,65 @@ $this->add(array(
 						//'required' => true,
 				)
 		) );
-	// clinique
+ */	// clinique
 	
-	$this->add ( array (
+	
+	$this->add(array(
 			'name' => 'E.G',
-			'type' => 'Text',
+			'type' => 'Select',
 			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
+					'value_options' => array(
+							0 => iconv ( 'ISO-8859-1', 'UTF-8','normal') ,
+							1 => iconv ( 'ISO-8859-1', 'UTF-8','anormal') ,
+					),
 			),
-			'attributes' => array (
+			'attributes' => array(
 					'id' => 'E.G',
-					//'required' => true,
-			)
-	) );
 	
+			),
+	));
 	$this->add ( array (
 			'name' => 'muq',
-			'type' => 'Text',
+			'type' => 'Select',
 			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
-			),
+	'value_options' => array(
+							0 => iconv ( 'ISO-8859-1', 'UTF-8','légére') ,
+							1 => iconv ( 'ISO-8859-1', 'UTF-8','épaisse') ,
+					),
+								),
 			'attributes' => array (
 					'id' => 'muq',
 					//'required' => true,
 			)
 	) );
 	
-	$this->add ( array (
+
+	$this->add(array(
 			'name' => 'oeud',
-			'type' => 'Text',
+			'type' => 'Select',
 			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
+					'value_options' => array(
+							0 => iconv ( 'ISO-8859-1', 'UTF-8','discret') ,
+							1 => iconv ( 'ISO-8859-1', 'UTF-8','++') ,
+							2 => iconv ( 'ISO-8859-1', 'UTF-8','nulle') ,
+								
+					),
 			),
-			'attributes' => array (
+			'attributes' => array(
 					'id' => 'oeud',
-					//'required' => true,
-			)
-	) );
+	
+			),
+	));
 	
 	$this->add ( array (
 			'name' => 'seins',
-			'type' => 'Text',
+			'type' => 'Select',
 			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
+					'value_options' => array(
+							0 => iconv ( 'ISO-8859-1', 'UTF-8','normal') ,
+							1 => iconv ( 'ISO-8859-1', 'UTF-8','anormal') ,
 			),
+					),
 			'attributes' => array (
 					'id' => 'seins',
 					//'required' => true,
@@ -2943,25 +3478,24 @@ $this->add(array(
 	
 	$this->add ( array (
 			'name' => 'inv_uter',
-			'type' => 'Text',
+			'type' => 'Select',
 			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
-			),
+'value_options' => array(
+							0 => iconv ( 'ISO-8859-1', 'UTF-8','bien involué') ,
+							1 => iconv ( 'ISO-8859-1', 'UTF-8','mal') ,
+			),			),
 			'attributes' => array (
 					'id' => 'inv_uter',
-					//'required' => true,
 			)
 	) );
 	
 	$this->add ( array (
 			'name' => 'tv',
-			'type' => 'Text',
+			'type' => 'Select',
 			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
 			),
 			'attributes' => array (
 					'id' => 'tv',
-					//'required' => true,
 			)
 	) );
 	// fin cliniaue
@@ -3003,84 +3537,213 @@ $this->add(array(
 	
 	// prevention
 	
-	$this->add ( array (
-			'name' => 'vat',
-			'type' => 'Text',
-			'options' => array (
-					//'label' => iconv('ISO-8859-1', 'UTF-8','DDR:')
-			),
-			'attributes' => array (
-					'id' => 'vat',
-					//'required' => true,
-			)
-	) );
+
+		$this->add(array(
+				'name' => 'vat',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Non') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Oui') ,
+						),
+				),
+				'attributes' => array(
+						'id' => 'vat',
+						
+				),
+		));
 	
-	$this->add ( array (
-			'name' => 'fer',
-			'type' => 'Text',
-			'options' => array (
-			),
-			'attributes' => array (
-					'id' => 'fer',
-			)
-	) );
-	
-	$this->add ( array (
+	$this->add(array(
+				'name' => 'fer',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Non') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Oui') ,
+						),
+				),
+				'attributes' => array(
+						'id' => 'fer',
+						
+				),
+		));
+	$this->add(array(
 			'name' => 'vih',
-			'type' => 'Text',
+			'type' => 'Select',
 			'options' => array (
+					'value_options' => array(
+							0 => iconv ( 'ISO-8859-1', 'UTF-8','+') ,
+							1 => iconv ( 'ISO-8859-1', 'UTF-8','-') ,
+					),
 			),
-			'attributes' => array (
+			'attributes' => array(
 					'id' => 'vih',
-			)
-	) );
+	
+			),
+	));
 	//fin  prevention
 	
 	// ALLAITEMENT
+
 	$this->add ( array (
-			'name' => 'ame',
-			'type' => 'Text',
-			'options' => array (
-			),
-			'attributes' => array (
-					'id' => 'ame',
-			)
-	) );
+				'name' => 'ame',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'ame'
+				)
+		) );
 	
-	$this->add ( array (
-			'name' => 'autres',
-			'type' => 'Text',
-			'options' => array (
-			),
-			'attributes' => array (
-					'id' => 'autres',
-			)
-	) );
+	
+		$this->add ( array (
+				'name' => 'autres',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'autres'
+				)
+		) );
 	//fin  ALLAITEMENT
 	
 
 	// CONTRACEPTION
-	$this->add ( array (
-			'name' => 'mama',
-			'type' => 'Text',
-			'options' => array (
-			),
-			'attributes' => array (
-					'id' => 'mama',
-			)
-	) );
 	
-	$this->add ( array (
-			'name' => 'autres',
-			'type' => 'Text',
-			'options' => array (
-			),
-			'attributes' => array (
-					'id' => 'autres',
-			)
-	) );
+		$this->add ( array (
+				'name' => 'mama',
+				'type' => 'checkbox',
+				'attributes' => array (
+						'id' => 'mama'
+				)
+		) );
+	
+	
 	//fin  CONTRACEPTION
 	
+		/* ethnie*/
+		$this->add(array(
+				'name' => 'ethnie',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Wolof') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Serere') ,
+								2 => iconv ( 'ISO-8859-1', 'UTF-8','Toucouleur') ,
+								3 => iconv ( 'ISO-8859-1', 'UTF-8','Mandingue') ,
+								4 => iconv ( 'ISO-8859-1', 'UTF-8','Diola') ,
+								5 => iconv ( 'ISO-8859-1', 'UTF-8','Autres') ,
+										
+						),
+				),
+				'attributes' => array(
+						'id' => 'ethnie',
+		
+				),
+		));
+		/* source info */
+		$this->add(array(
+				'name' => 'source',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Parent') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Mari') ,
+								2 => iconv ( 'ISO-8859-1', 'UTF-8','Agent de santé') ,
+								3 => iconv ( 'ISO-8859-1', 'UTF-8','Groupement') ,
+								4 => iconv ( 'ISO-8859-1', 'UTF-8','Radio') ,
+								5 => iconv ( 'ISO-8859-1', 'UTF-8','Télévision') ,
+								6 => iconv ( 'ISO-8859-1', 'UTF-8','Affiche') ,
+								7 => iconv ( 'ISO-8859-1', 'UTF-8','Autres') ,
+		
+						),
+				),
+				'attributes' => array(
+						'id' => 'source',
+		
+				),
+		));
+		/* situation matrimonial*/
+		$this->add(array(
+				'name' => 'situation',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Mariée') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Célibataire') ,
+								2 => iconv ( 'ISO-8859-1', 'UTF-8','Veuve') ,
+								3 => iconv ( 'ISO-8859-1', 'UTF-8','Divorcée') ,
+								4 => iconv ( 'ISO-8859-1', 'UTF-8','Separée') ,		
+						),
+				),
+				'attributes' => array(
+						'id' => 'situation',
+		
+				),
+		));
+		/* niveau d'instruction*/
+		$this->add(array(
+				'name' => 'niveau',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Non Scolarisée') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Alphabétisée') ,
+								2 => iconv ( 'ISO-8859-1', 'UTF-8','Primaire') ,
+								3 => iconv ( 'ISO-8859-1', 'UTF-8','Secondaire') ,
+								4 => iconv ( 'ISO-8859-1', 'UTF-8','Supérieur') ,
+						),
+				),
+				'attributes' => array(
+						'id' => 'niveau',
+		
+				),
+		));
+		/* profession du mari */
+		$this->add(array(
+				'name' => 'profession',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Sans') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Cultivateur') ,
+								2 => iconv ( 'ISO-8859-1', 'UTF-8','Salarié') ,
+								3 => iconv ( 'ISO-8859-1', 'UTF-8','A son compte') ,
+						),
+				),
+				'attributes' => array(
+						'id' => 'profession',
+		
+				),
+		));
+		/* */
+		$this->add(array(
+				'name' => 'prefere',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Oui') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Non') ,
+						),
+				),
+				'attributes' => array(
+						'id' => 'prefere',
+		
+				),
+		));
+		/* religion*/
+		$this->add(array(
+				'name' => 'religion',
+				'type' => 'Select',
+				'options' => array (
+						'value_options' => array(
+								0 => iconv ( 'ISO-8859-1', 'UTF-8','Musulmane') ,
+								1 => iconv ( 'ISO-8859-1', 'UTF-8','Chretienne') ,
+								2 => iconv ( 'ISO-8859-1', 'UTF-8','Autres') ,
+								
+						),
+				),
+				'attributes' => array(
+						'id' => 'religion',
+		
+				),
+		));
 	
 	$this->add ( array (
 			'name' => 'etat_de_la_mere',
@@ -3119,21 +3782,7 @@ $this->add(array(
 						'id' => 'poids' 
 				) 
 		) );
-	
-	$this->add(array(
-			'name' => 'pouls',
-			'type' => 'select',
-			'options' => array (
-					'value_options' => array(
-							0 => 'Non',
-							1 => 'Oui' ,
-					),
-			),
-			'attributes' => array(
-					'id' => 'pouls',
-					//'required' => true,
-			),
-	));
+
 	$this->add ( array (
 			'name' => 'lieu_accouchement',
 			'type' => 'Text',

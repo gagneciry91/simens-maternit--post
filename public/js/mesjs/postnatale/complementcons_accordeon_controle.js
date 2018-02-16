@@ -902,14 +902,14 @@ $("#terminer2, #terminer3").click(function () {
     //Recuperer les valeurs des champs
     //Recuperer les valeurs des champs
     
-   // donnees['poids'] = $("#poids").val();
+    donnees['poids'] = $("#poids").val();
    // donnees['taille'] = $("#taille").val();
     donnees['hu'] = $("#hu").val();
     donnees['paleur'] = $("#paleur").val();
     donnees['temperature'] = $("#temperature").val();
     donnees['tensionmaximale'] = $("#tensionmaximale").val();
     donnees['tensionminimale'] = $("#tensionminimale").val();
-    //donnees['pouls'] = $("#pouls").val();
+    donnees['pouls'] = $("#pouls").val();
     //donnees['frequence_respiratoire'] = $("#frequence_respiratoire").val();
     donnees['glycemie_capillaire'] = $("#glycemie_capillaire").val();
    
@@ -927,6 +927,13 @@ $("#terminer2, #terminer3").click(function () {
     donnees['mort_ne'] = $("#mort_ne").val();
     donnees['note_mort_ne'] = $("#note_mort_ne").val();
     donnees['cesar'] = $("#cesar").val();
+    donnees['avortement'] = $("#avortement").val();
+    donnees['note_avortement'] = $("#note_avortement").val();
+    donnees['allaitement'] = $("#allaitement").val();
+    donnees['note_allaitement'] = $("#note_allaitement").val();
+    donnees['age'] = $("#age").val();
+    donnees['regularite'] = $("#regularite").val();
+
     donnees['note_cesar'] = $("#note_cesar").val();
     donnees['groupe_sanguins'] = $("#groupe_sanguins").val();
     donnees['rhesus'] = $("#rhesus").val();
@@ -979,13 +986,47 @@ $("#terminer2, #terminer3").click(function () {
     donnees['prenome'] = $("#prenome").val();
     
     donnees['date_accouchement'] = $("#date_accouchement").val();
-    donnees['deroulement_accouchement'] = $("#deroulement_accouchement").val();
+    donnees['type_accouchement'] = $("#typet_accouchement").val();
     donnees['partie'] = $("#partie").val();
     donnees['etat_de_la_mere'] = $("#etat_de_la_mere").val();
-    
-    
+    donnees['numero_d_ordre'] = $("#numero_d_ordre").val();
+    donnees['lieu_accouchement'] = $("#lieu_accouchement").val();
 
     
+
+    //**********--	datecpon --********
+    //Recuperer les valeurs des champs
+    
+   donnees['j1_j3'] = $("#j1_j3").val();
+   donnees['j4_j8'] = $("#j4_j8").val();
+   donnees['j9_j15'] = $("#j9_j15").val();
+   donnees['j16_j41'] = $("#j16_j41").val();
+   donnees['j42'] = $("#j42").val();
+
+
+   //**********--	rangcpon --********
+   //Recuperer les valeurs des champs
+   
+   donnees['un'] = $("#un").val();
+   donnees['deux'] = $("#deux").val();
+   donnees['trois'] = $("#trois").val();
+   
+
+   //**********--	rangcpon --********
+   //Recuperer les valeurs des champs
+   
+   donnees['fer'] = $("#fer").val();
+   donnees['vat'] = $("#vat").val();
+   donnees['vih'] = $("#vih").val();
+   
+// allaitement
+
+   donnees['ame'] = $("#ame").val();
+   donnees['autres'] = $("#autres").val();
+   donnees['ame'] = $("#ame").val();
+// planification
+   
+
     
     
     //conclusion accouchement
@@ -2395,6 +2436,24 @@ function getAccouchement(val){
 }
 
 getAccouchement($('#type_accouchement').val());
+
+
+//pour postnatale
+
+$('.TypeAccouchement').toggle(false);
+function getAccouchement(val){	
+	//alert(val);
+	if((val==0)||(val==1)){
+		$("#typeaccouchement").html("Accouchement");
+		$('.TypeAccouchement').fadeOut();
+	}else{
+		$("#typeaccouchement span span").html("");
+		$('.TypeAccouchement').fadeIn();
+		
+	}	
+}
+
+getPostnatale($('#type_accouchement').val());
 function fAddText() { 
     document.getElementById('Cible').innerHTML ='<textarea cols="30" rows="20"></textarea>'; 
 } 

@@ -822,6 +822,7 @@ public function listePatientAjaxAction() {
 
 
 	public function modifierAction() {
+		
 		$control = new DateHelper();
 		$this->layout ()->setTemplate ( 'layout/accouchement' );
 		$id_patient = $this->params ()->fromRoute ( 'id_patient', 0 );
@@ -1500,14 +1501,13 @@ foreach ($Nouveau as $Nv){
 					'note_antibiotique' => $donne_accouchement['note_antibiotique'],
 					'note_anticonv' => $donne_accouchement['note_anticonv'],
 					'note_transfusion' => $donne_accouchement['note_transfusion'],	
-		);//
+		);
 		$form->populateValues($donnees_accouchement);
-		//var_dump($form);exit();
 		
 		$donne_pre=array(
 				'prenome'=>$donne_prenome['prenomme']
 				
-		);//var_dump($donne_antecedent2);exit();
+		);
 		
 		$form->populateValues($donne_pre);
 		$type_admission = $this->getConsultationTable()->RecuperTousLesIdAdmis($inf['id_admission']);
