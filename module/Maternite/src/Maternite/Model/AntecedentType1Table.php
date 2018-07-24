@@ -57,6 +57,7 @@ class AntecedentType1Table {
     			'mort_ne' => $donnees ['mort_ne'],
     			'note_mort_ne' => $donnees ['note_mort_ne'],
     			'cesar' => $donnees ['cesar'],
+<<<<<<< HEAD
     			'avortement' => $donnees ['avortement'],
     			'note_avortement' => $donnees ['note_avortement'],
     			'allaitement' => $donnees ['allaitement'],
@@ -64,6 +65,10 @@ class AntecedentType1Table {
     			'age' => $donnees ['age'],
     			'regularite' => $donnees ['regularite'],
     			'note_cesar' => $donnees ['note_cesar'],
+=======
+    			'note_cesar' => $donnees ['note_cesar'],
+    			'groupe_sanguin' => $donnees ['groupe_sanguins'],
+>>>>>>> refs/remotes/origin/master
     			'rhesus' => $donnees ['rhesus'],
     			'note_gs' => $donnees ['note_gs'],
     			'test_emmel' => $donnees ['test_emmel'],

@@ -55,7 +55,10 @@ class AntecedentType2Table {
         			'type_contraception' => $donnees ['type_contraception'],
         			'duree_contraception' => $donnees ['duree_contraception'],
         			'note_contraception' => $donnees ['note_contraception'],
+<<<<<<< HEAD
         			
+=======
+>>>>>>> refs/remotes/origin/master
         	);
         
         	

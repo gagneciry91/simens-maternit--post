@@ -902,6 +902,7 @@ $("#terminer2, #terminer3").click(function () {
     //Recuperer les valeurs des champs
     //Recuperer les valeurs des champs
     
+<<<<<<< HEAD
     donnees['poids'] = $("#poids").val();
     donnees['taille'] = $("#taille").val();
     donnees['hu'] = $("#hu").val();
@@ -910,6 +911,16 @@ $("#terminer2, #terminer3").click(function () {
     donnees['tensionmaximale'] = $("#tensionmaximale").val();
     donnees['tensionminimale'] = $("#tensionminimale").val();
     donnees['pouls'] = $("#pouls").val();
+=======
+   // donnees['poids'] = $("#poids").val();
+   // donnees['taille'] = $("#taille").val();
+    donnees['hu'] = $("#hu").val();
+    donnees['paleur'] = $("#paleur").val();
+    donnees['temperature'] = $("#temperature").val();
+    donnees['tensionmaximale'] = $("#tensionmaximale").val();
+    donnees['tensionminimale'] = $("#tensionminimale").val();
+    //donnees['pouls'] = $("#pouls").val();
+>>>>>>> refs/remotes/origin/master
     //donnees['frequence_respiratoire'] = $("#frequence_respiratoire").val();
     donnees['glycemie_capillaire'] = $("#glycemie_capillaire").val();
    

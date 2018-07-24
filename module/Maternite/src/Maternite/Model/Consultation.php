@@ -14,6 +14,7 @@ class Consultation implements InputFilterAwareInterface {
 	public $id_patient;
 	public $date;
 	public $poids;
+<<<<<<< HEAD
 	public $j1_j3;
 	
     public $taille;
@@ -33,6 +34,23 @@ class Consultation implements InputFilterAwareInterface {
 		$this->id_cons = (! empty ( $data ['ID_CONS'] )) ? $data ['ID_CONS'] : null;
 		$this->j1_j3 = (! empty ( $data ['J1_J3'] )) ? $data ['J1_J3'] : null;
 		
+=======
+    public $taille;
+	public $paleur;
+	public $temperature;
+	public $pression_arterielle;
+	public $pouls;
+	public $frequence_respiratoire;
+	public $glycemie_capillaire;
+	public $consprise;
+	public $dateonly;
+	public $heurecons;
+	public $id_service;
+	public $archivage;
+	protected $inputFilter;
+	public function exchangeArray($data) {
+		$this->id_cons = (! empty ( $data ['ID_CONS'] )) ? $data ['ID_CONS'] : null;
+>>>>>>> refs/remotes/origin/master
 		$this->id_medecin = (! empty ( $data ['ID_MEDECIN'] )) ? $data ['ID_MEDECIN'] : null;
 		$this->id_surveillant = (! empty ( $data ['ID_SURVEILLANT'] )) ? $data ['ID_SURVEILLANT'] : null;
 		$this->id_patient = (! empty ( $data ['ID_PATIENT'] )) ? $data ['ID_PATIENT'] : null;

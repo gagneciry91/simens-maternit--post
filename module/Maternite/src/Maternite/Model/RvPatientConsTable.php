@@ -13,6 +13,7 @@ class RvPatientConsTable {
 	public function __construct(TableGateway $tableGateway) {
 		$this->tableGateway = $tableGateway;
 	}
+<<<<<<< HEAD
 	public function getDateCpon($id) {
 	
 		$rowset = $this->tableGateway->select ( array (
@@ -26,6 +27,8 @@ class RvPatientConsTable {
 		}
 		return $row;
 	}
+=======
+>>>>>>> refs/remotes/origin/master
 	public function getRendezVous($id) {
 		$rowset = $this->tableGateway->select ( array (
 				'ID_CONS' => $id 

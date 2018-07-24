@@ -65,6 +65,7 @@ class PostnataleTable {
 		$select->where ( array (
 				'pos.id_cons' => $id_cons
 		) );
+<<<<<<< HEAD
 		$select->order ( 'pos.id_postnatale ASC' );
 	
 		$stat = $sql->prepareStatementForSqlObject ( $select );
@@ -94,6 +95,50 @@ class PostnataleTable {
 		$this->tableGateway->insert ( $donnees );
 	
 		//var_dump('test');exit();
+=======
+		$select->order ( 'pos.id_accouchement ASC' );
+	
+		$stat = $sql->prepareStatementForSqlObject ( $select );
+		$result = $stat->execute()->current();
+	
+		return $result;
+	}
+	
+
+	public function updatePostnatale($donnees,$id_accouchement) {
+	
+		$Control = new DateHelper();
+		 
+		$this->tableGateway->delete ( array (
+				'id_cons' => $donnees ['id_cons'],
+	
+		) );
+		$date_accouchement = $donnees['date_accouchement'];
+		if($date_accouchement){ $date_accouchement = $Control->convertDateInAnglais($date_accouchement); }else{ $date_accouchement = null;}
+			
+		if( $donnees['type_accouchement']!=0){
+			$dataac = array (
+					'id_cons' => $donnees ['id_cons'],
+					'id_admission'=>$donnees['id_admission'],
+					'id_accouchement'=>$id_accouchement,
+					'id_type' => $donnees['type_accouchement'],
+					//'motif_type' => $donnees['motif_type'],
+					'date_accouchement' => $date_accouchement,
+					'lieu_accouchement' => $donnees['lieu_accouchement'],
+					'partie' => $donnees['partie'],
+					'rang_cpon' => $donnees['rang_cpon'],
+					'etat_de_la_mere' => $donnees['etat_de_la_mere'],
+					
+					'transfusion' => $donnees['transfusion'],
+					'note_delivrance' => $donnees['note_delivrance'],
+					'note_hemorragie' => $donnees['note_hemorragie'],
+					'observation' => $donnees['observation'],
+					
+			);//var_dump($dataac);exit();
+	
+			return $this->tableGateway->getLastInsertValue($this->tableGateway->insert ( $dataac ));
+		}
+>>>>>>> refs/remotes/origin/master
 	}
 	
 }
